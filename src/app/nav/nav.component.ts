@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import {
   faLightbulb as faSolidLightbulb,
-  faDollarSign,
+  faDollarSign, faSun, faMoon,
   IconDefinition
 } from "@fortawesome/free-solid-svg-icons";
 import { faLightbulb as faRegularLightbulb } from "@fortawesome/free-regular-svg-icons";
@@ -15,6 +15,9 @@ import { ThemeService } from "src/app/theme/theme.service";
 export class NavComponent implements OnInit {
   faLightbulb: IconDefinition;
   faDollarSign = faDollarSign;
+  faSun = faSun;
+  faMoon = faMoon;
+  isDark = false;
 
   constructor(
     private themeService: ThemeService
@@ -27,6 +30,7 @@ export class NavComponent implements OnInit {
   setLightbulb() {
     if (this.themeService.isDarkTheme()) {
       this.faLightbulb = faRegularLightbulb;
+      this.isDark = true;
     } else {
       this.faLightbulb = faSolidLightbulb;
     }
@@ -38,6 +42,8 @@ export class NavComponent implements OnInit {
     } else {
       this.themeService.setDarkTheme();
     }
+
+    this.isDark = !this.isDark;
 
     this.setLightbulb();
   }
